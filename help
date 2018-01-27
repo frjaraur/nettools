@@ -1,0 +1,11 @@
+#!/bin/sh
+ToolsAvailable(){
+    printf "Tools Available:\n-curl\n-ab\n-netcat\n-nping\n-nslookup\n-dig\n-host\n-http (httping)\n"
+}
+
+Examples(){
+        printf "HTTP:\nhttp --follow --verbose --headers www.codegazers.org\n"
+
+}
+
+ToolsAvailable

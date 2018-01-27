@@ -15,3 +15,5 @@ httping \
 COPY help /help
 
 CMD ["/help"]
+
+USER 1000
