@@ -26,7 +26,6 @@ Tools Available in Jmeter, K6 or Everything:
 
 ## Example Usage:
 ~~~
-
 $  docker run --rm  frjaraur/nettools:small \
 ab -n 1 -v 2 -k http://www.example.com/
 
@@ -40,10 +39,10 @@ httpstat https://www.codegazers.org
 
 ## Notes:
  - It doesn't need root, it uses user nettools with uid 65500. If you need to deploy ports under 1024, you will need to change container execution user.
- For example, running traceroute may require open AF_INET socket. Simply run container as root user:
+ For example, running traceroute may require open AF_INET socket or using icmp ping with nping will require root permissions too. Simply run container as root user:
 ~~~
-
 $ docker run --rm --user=root frjaraur/nettools:small \
 traceroute www.google.com
 
+$ docker run --rm  --user=root frjaraur/nettools:small \
 ~~~
