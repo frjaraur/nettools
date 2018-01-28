@@ -1,1 +1,24 @@
-# nettools
+## nettools
+
+# Image for testing and debugging Network issues with Web Servers.
+
+Tools Available in Small Version:
+-curl
+-ab
+-netcat
+-nping
+-nslookup
+-dig
+-host
+-http (httping)
+Tools Available in Jmeter, K6 or All:
+-jmeter (http://jmeter.apache.org)
+-k6 (https://k6.io/ built from loadimpact/k6 image)
+-both
+
+
+# Example Usage:
+$  docker run --rm  frjaraur/nettools:small ab -n 1 -v 2 -k http://www.example.com/
+
+# Notes:
+It doesn't need root, it uses user nettools with uid 65500. If you need to deploy ports under 1024, you will need to change container execution user.
