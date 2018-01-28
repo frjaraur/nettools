@@ -45,4 +45,5 @@ $ docker run --rm --user=root frjaraur/nettools:small \
 traceroute www.google.com
 
 $ docker run --rm  --user=root frjaraur/nettools:small \
+nping --icmp www.google.com
 ~~~
