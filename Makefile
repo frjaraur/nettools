@@ -5,6 +5,6 @@ k6:
 jmeter:
 	docker build -f Dockerfile.jmeter -t frjaraur/nettools:jmeter .
 everything:
-	docker build -f Dockerfile.big -t frjaraur/nettools:big .
+	docker build -f Dockerfile.everything -t frjaraur/nettools:everything .
 all:
 	make small k6 jmeter everything
