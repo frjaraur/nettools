@@ -1,0 +1,27 @@
+FROM alpine
+ENV JMETERVERSION="3.3"
+ENV PATH=${PATH}:/usr/local/jmeter/bin
+RUN apk add --no-cache --update bash \
+curl \
+apache2-utils \
+netcat-openbsd \
+nmap-nping \
+nmap bind-tools \
+python3 \
+ca-certificates \
+openjdk8-jre \
+&& pip3 install --upgrade pip \
+&& pip3 install httpie httpie-unixsocket \
+httping \
+&& rm -rf /var/cache/apk/* \
+&& adduser -D -H -u 65500 nettools \
+&& curl -sL -o /tmp/jmeter.tgz http://apache.rediris.es//jmeter/binaries/apache-jmeter-${JMETERVERSION}.tgz \
+&& cd /usr/local \
+&& tar -zxf /tmp/jmeter.tgz \
+&& ln -s apache-jmete* jmeter
+
+COPY help /help
+
+CMD ["/help"]
+
+USER 65500
