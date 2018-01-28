@@ -40,3 +40,10 @@ httpstat https://www.codegazers.org
 
 ## Notes:
  - It doesn't need root, it uses user nettools with uid 65500. If you need to deploy ports under 1024, you will need to change container execution user.
+ For example, running traceroute may require open AF_INET socket. Simply run container as root user:
+~~~
+
+$ docker run --rm --user=root frjaraur/nettools:small \
+traceroute www.google.com
+
+~~~
