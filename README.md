@@ -2,6 +2,12 @@
 
 ## Image for testing and debugging Network issues with Web Servers.
 
+4 Tags
+ - frjaraur/nettools:small
+ - frjaraur/nettools:jmeter
+ - frjaraur/nettools:k6
+ - frjaraur/nettools:everything
+
 Tools Available in Small Version:
  - curl
  - ab
@@ -13,7 +19,7 @@ Tools Available in Small Version:
  - http (httping)
  - httpstat (https://github.com/reorx/httpstat)
  
-Tools Available in Jmeter, K6 or All:
+Tools Available in Jmeter, K6 or Everything:
  - jmeter (http://jmeter.apache.org)
  - k6 (https://k6.io/ built from loadimpact/k6 image)
  - both
