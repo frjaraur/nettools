@@ -11,7 +11,8 @@ ca-certificates \
 && pip3 install httpie httpie-unixsocket \
 httping \
 && rm -rf /var/cache/apk/* \
-&& adduser -D -H -u 65500 nettools \
+&& adduser -D -H -u 65500 nettools 
+
 COPY help /help
 
 CMD ["/help"]
