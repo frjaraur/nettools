@@ -11,6 +11,7 @@ Tools Available in Small Version:
  - dig
  - host
  - http (httping)
+ - httpstat (https://github.com/reorx/httpstat)
  
 Tools Available in Jmeter, K6 or All:
  - jmeter (http://jmeter.apache.org)
@@ -26,6 +27,9 @@ ab -n 1 -v 2 -k http://www.example.com/
 $ docker run --rm -v /tmp/abdata:/tmp frjaraur/nettools:small \
 ab -k -n1000 -c100 -H 'Accept-Encoding: gzip,deflate' \
 -g /tmp/codegazers.csv https://www.codegazers.org/
+
+$ docker run -ti --env HTTPSTAT_SHOW_SPEED=true frjaraur/nettools:small \
+httpstat https://www.codegazers.org
 ~~~
 
 ## Notes:

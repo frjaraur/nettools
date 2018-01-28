@@ -1,6 +1,6 @@
 #!/bin/sh
 ToolsAvailable(){
-    printf "Tools Available ins Small Version:\n-curl\n-ab\n-netcat\n-nping\n-nslookup\n-dig\n-host\n-http (httping)\n"
+    printf "Tools Available ins Small Version:\n-curl\n-ab\n-netcat\n-nping\n-nslookup\n-dig\n-host\n-http (httping)\n-httpstat"
     printf "Tools Available in Jmeter, K6 or All:\n-jmeter\n-k6\n-both\n"
 }
 

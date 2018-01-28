@@ -15,7 +15,6 @@ httpstat \
 && adduser -D -H -u 65500 nettools 
 
 COPY help /help
+USER 65500
 
 CMD ["/help"]
-
-USER 65500
