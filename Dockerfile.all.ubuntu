@@ -1,22 +1,24 @@
 FROM loadimpact/k6 as k6
 
-FROM alpine
+FROM ubuntu
 ENV JMETERVERSION="3.3"
 ENV PATH=${PATH}:/usr/local/jmeter/bin
-RUN apk add --no-cache --update bash \
+RUN DEBIAN_FRONTEND=noninteractive apt-get update -qq \
+&& DEBIAN_FRONTEND=noninteractive apt-get install -qq \
+bash \
 curl \
 apache2-utils \
 netcat-openbsd \
-nmap-nping \
-nmap bind-tools \
+nmap \
+dnsutils \
 python3 \
+python3-pip \
 ca-certificates \
-openjdk8-jre \
+openjdk-8-jre \
 && pip3 install --upgrade pip \
 && pip3 install httpie httpie-unixsocket \
 httping \
-&& rm -rf /var/cache/apk/* \
-&& adduser -D -H -u 65500 nettools \
+&& apt-get clean \
 && curl -sL -o /tmp/jmeter.tgz http://apache.rediris.es//jmeter/binaries/apache-jmeter-${JMETERVERSION}.tgz \
 && cd /usr/local \
 && tar -zxf /tmp/jmeter.tgz \
@@ -28,4 +30,3 @@ COPY help /help
 
 CMD ["/help"]
 
-USER 65500

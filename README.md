@@ -17,9 +17,15 @@ Tools Available in Jmeter, K6 or All:
  - k6 (https://k6.io/ built from loadimpact/k6 image)
  - both
 
-~~~
 ## Example Usage:
-$  docker run --rm  frjaraur/nettools:small ab -n 1 -v 2 -k http://www.example.com/
+~~~
+
+$  docker run --rm  frjaraur/nettools:small \
+ab -n 1 -v 2 -k http://www.example.com/
+
+$ docker run --rm -v /tmp/abdata:/tmp frjaraur/nettools:small \
+ab -k -n1000 -c100 -H 'Accept-Encoding: gzip,deflate' \
+-g /tmp/codegazers.csv https://www.codegazers.org/
 ~~~
 
 ## Notes:
