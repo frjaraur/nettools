@@ -1,11 +1,12 @@
 FROM alpine:latest as siege-builder
-ENV VERSION=3.1.4
+WORKDIR /tmp
 RUN apk update \
-    && apk add curl g++ make \
-    && curl http://download.joedog.org/siege/siege-$VERSION.tar.gz > siege-$VERSION.tar.gz \
-    && tar -xf siege-${VERSION}.tar.gz \
-    && cd siege-${VERSION} \
+    && apk add curl g++ make file \
+    && curl -sSL http://download.joedog.org/siege/siege-3.1.4.tar.gz -o /tmp/siege-latest.tar.gz \
+    && tar -zxvf /tmp/siege-latest.tar.gz \
+    && cd /tmp/siege-* \
     && ./configure \
+    && make \
     && make install
 
 FROM alpine
@@ -23,7 +24,7 @@ httping \
 httpstat \
 && rm -rf /var/cache/apk/* \
 && adduser -D -H -u 65500 nettools 
-COPY --from=siegue-builder /usr/local/bin/siege /usr/local/bin
+COPY --from=siege-builder /usr/local/bin/siege /usr/local/bin
 COPY help /help
 USER 65500
 
