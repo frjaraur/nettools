@@ -1,13 +1,6 @@
-FROM alpine:latest as siege-builder
-WORKDIR /tmp
-RUN apk update \
-    && apk add curl g++ make file \
-    && curl -sSL http://download.joedog.org/siege/siege-3.1.4.tar.gz -o /tmp/siege-latest.tar.gz \
-    && tar -zxvf /tmp/siege-latest.tar.gz \
-    && cd /tmp/siege-* \
-    && ./configure \
-    && make \
-    && make install
+FROM golang:alpine as go-builder
+RUN apk --update  add git \
+    && go get -u github.com/rakyll/hey
 
 FROM alpine
 RUN apk add --no-cache --update bash \
@@ -19,14 +12,16 @@ nmap bind-tools \
 python3 \
 ca-certificates \
 && pip3 install --upgrade pip \
-&& pip3 install httpie httpie-unixsocket \
+&& pip3 install \
+httpie \
+httpie-unixsocket \
 httping \
 httpstat \
 && rm -rf /var/cache/apk/* \
 && adduser -D -u 65500 nettools 
-COPY --from=siege-builder /usr/local/bin/siege /usr/local/bin
-COPY --from=siege-builder /usr/local/bin/siege.config /usr/local/bin
-COPY --from=siege-builder /usr/local/etc/siegerc /usr/local/etc
+COPY --from=go-builder /go/bin/hey /usr/local/bin
+#COPY --from=siege-builder /usr/local/bin/siege.config /usr/local/bin
+#COPY --from=siege-builder /usr/local/etc/siegerc /usr/local/etc
 COPY help /help
 USER 65500
 
