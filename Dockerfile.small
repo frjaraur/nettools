@@ -23,7 +23,7 @@ ca-certificates \
 httping \
 httpstat \
 && rm -rf /var/cache/apk/* \
-&& adduser -D -H -u 65500 nettools 
+&& adduser -D -u 65500 nettools 
 COPY --from=siege-builder /usr/local/bin/siege /usr/local/bin
 COPY --from=siege-builder /usr/local/bin/siege.config /usr/local/bin
 COPY --from=siege-builder /usr/local/etc/siegerc /usr/local/etc
