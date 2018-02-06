@@ -9,6 +9,8 @@ FROM alpine
 RUN apk add --no-cache --update bash \
 curl \
 tcpdump \
+iftop \
+mtr \
 apache2-utils \
 netcat-openbsd \
 nmap-nping \
