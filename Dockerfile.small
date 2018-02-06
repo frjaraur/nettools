@@ -8,6 +8,7 @@ RUN apk --update  add git \
 FROM alpine
 RUN apk add --no-cache --update bash \
 curl \
+tcpdump \
 apache2-utils \
 netcat-openbsd \
 nmap-nping \
