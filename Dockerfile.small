@@ -1,12 +1,13 @@
-FROM golang:alpine as go-builder
-RUN apk --update  add git \
-&& go get -u github.com/rakyll/hey \
-&& go get -u github.com/codesenberg/bombardier \
-&& go get github.com/parkghost/gohttpbench \
-&& go build -o gb github.com/parkghost/gohttpbench
+#FROM golang:alpine as go-builder
+#RUN apk --update  add git \
+#&& go get -u github.com/rakyll/hey \
+#&& go get -u github.com/codesenberg/bombardier \
+#&& go get github.com/parkghost/gohttpbench \
+#&& go build -o gb github.com/parkghost/gohttpbench
 
 FROM alpine
 RUN apk add --no-cache --update bash \
+iputils \
 curl \
 tcpdump \
 iftop \
@@ -16,6 +17,7 @@ netcat-openbsd \
 nmap-nping \
 nmap bind-tools \
 python3 \
+py3-pip \
 ca-certificates \
 && pip3 install --upgrade pip \
 && pip3 install \
@@ -25,9 +27,9 @@ httping \
 httpstat \
 && rm -rf /var/cache/apk/* \
 && adduser -D -u 65500 nettools 
-COPY --from=go-builder /go/bin/hey /usr/local/bin
-COPY --from=go-builder /go/bin/bombardier /usr/local/bin
-COPY --from=go-builder /go/bin/gohttpbench /usr/local/bin/goab
+#COPY --from=go-builder /go/bin/hey /usr/local/bin
+#COPY --from=go-builder /go/bin/bombardier /usr/local/bin
+#COPY --from=go-builder /go/bin/gohttpbench /usr/local/bin/goab
 COPY help /help
 USER 65500
 
