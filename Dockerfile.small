@@ -27,6 +27,8 @@ httping \
 httpstat \
 && rm -rf /var/cache/apk/* \
 && adduser -D -u 65500 nettools 
+RUN curl -o /usr/sbin/gosu -Ls https://github.com/tianon/gosu/releases/download/1.14/gosu-amd64 \
+&& chmod 755 /usr/sbin/gosu
 #COPY --from=go-builder /go/bin/hey /usr/local/bin
 #COPY --from=go-builder /go/bin/bombardier /usr/local/bin
 #COPY --from=go-builder /go/bin/gohttpbench /usr/local/bin/goab
